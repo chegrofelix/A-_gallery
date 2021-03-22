@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,7 @@ SECRET_KEY = 'o%loor8j3g^cpi%x73fo-4&us3(0z8-(x$35qh4)#r=)9u^pun'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -68,6 +69,11 @@ TEMPLATES = [
     },
 ]
 
+UPLOADCARE = {
+    'pub_key': 'ef2a4dc742a424862dd6',
+	'secret':SECRET_KEY,
+}
+
 WSGI_APPLICATION = 'A_gallery.wsgi.application'
 
 
@@ -76,8 +82,10 @@ WSGI_APPLICATION = 'A_gallery.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'gallery',
+        'USER': 'moringa',
+        'PASSWORD': 'ragnarok'
     }
 }
 
@@ -106,7 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Nairobi'
 
 USE_I18N = True
 

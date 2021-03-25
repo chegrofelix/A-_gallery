@@ -4,7 +4,7 @@
 from django.db import models
 import paperclip
 import random
-from pyuploadcare.dj.models import ImageField
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
@@ -59,7 +59,7 @@ class Photo(models.Model):
     # location = models.ForeignKey(Location)
     categories = models.ManyToManyField(Category)
     post_date = models.DateTimeField(auto_now_add=True)
-    image = ImageField(blank=True, manual_crop="800x800")
+    image = CloudinaryField('image')
 
     def __str__(self):
         """

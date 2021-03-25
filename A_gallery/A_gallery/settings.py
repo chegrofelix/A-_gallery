@@ -11,7 +11,11 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import django_heroku
 import os
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary',
+   
 ]
 
 MIDDLEWARE = [
@@ -52,6 +58,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'A_gallery.urls'
+
+TEMPLATE_DIR = os.path.join(BASE_DIR,'gallery/templates')
 
 TEMPLATES = [
     {
@@ -75,6 +83,13 @@ UPLOADCARE = {
 }
 
 WSGI_APPLICATION = 'A_gallery.wsgi.application'
+
+
+cloudinary.config( 
+  cloud_name = "dyeurfiuk", 
+  api_key = "511211318861418", 
+  api_secret = "3doP76uNzv1fxSD9qmej1Swjclo" 
+)
 
 
 # Database
@@ -127,3 +142,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

@@ -20,7 +20,7 @@ import dj_database_url
 from decouple import config,Csv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -33,7 +33,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['localhost', 'gallery-fox.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -99,7 +99,7 @@ cloudinary.config(
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-
+#development
 if config('MODE')=="dev":
    DATABASES = {
        'default': {
@@ -166,5 +166,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Configure Django App for Heroku.
+django_heroku.settings(locals())

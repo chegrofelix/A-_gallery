@@ -56,7 +56,7 @@ class Photo(models.Model):
     """
     name = models.CharField(max_length=244)
     description = models.TextField()
-    # location = models.ForeignKey(Location)
+    #location = models.ForeignKey(Location)
     categories = models.ManyToManyField(Category)
     post_date = models.DateTimeField(auto_now_add=True)
     image = CloudinaryField('image')

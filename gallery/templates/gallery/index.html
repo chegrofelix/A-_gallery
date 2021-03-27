@@ -43,11 +43,13 @@
     </div>
 </div>
 
-<div class="container">
-<div class="row row-cols-4 row-cols-md-3 g-4">
+
+<!-- <div class="row row-cols-4 row-cols-md-3 g-4">
     <div class="col">
       <div class="card h-100">
         {%for photo in photos%}
+        <a class="lightbox" href="{{photo.image.url}}" data-caption="{{photo.name}}: {{photo.description}}">
+            <span class="description">
         <img src="{{photo.image.url}}" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">{{photo.name}}</h5>
@@ -60,13 +62,45 @@
 
     {%endfor%}
 </div>
- </div>       
+     
 <style>
 .card-img-top{
     width: 400px;
     height: 400px;
 }
 
+</style> -->
+<section class="gallery-block compact-gallery">
+  
+        <div class="row no-gutters">
+            {%for photo in photos%}
+            <div class="col-md-6 col-lg-4 item zoom-on-hover">
+                <a class="lightbox" href="{{photo.image.url}}" data-caption="{{photo.name}}: {{photo.description}}">
+                    <img class="img-fluid " src="{{photo.image.url}}">
+                    <span class="description">
+                        <span class="description-heading">{{photo.name}}</span>
+                        <span class="description-body">{{photo.description}}</span>
+                        <div >
+                            <p class="description-body"><span class="badge">
+                                <i class="fas fa-map-marker-alt"></i> {{photo.location.city}}, {{photo.location.country}}
+                            </span></p>
+                            <span id="photo{{photo.id}}" hidden>{{photo.image.url}}</span>
+                            <button onclick="copyToClipboard('photo{{photo.id}}')" class="btn no-border text-white"><i class="far fa-copy"></i></button>
+                        </div>
+                        <small style="font-size: 12px;" class="ml-45"><i class="far fa-clock"></i> {{photo.post_date | timesince}} ago</small>  
+                    </span>
+                </a>
+            </div>
+            {%endfor%}
+        </div>
+    
+</section>
+
+<style>
+.img-fluid{
+    height: 100%;
+    width: 100%;
+}
 </style>
 {%endblock%}
 

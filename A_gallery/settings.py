@@ -39,7 +39,6 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'whitenoise.runserver_nostatic'
     'gallery.apps.GalleryConfig',
     'django.contrib.admin',
     'django.contrib.auth',
